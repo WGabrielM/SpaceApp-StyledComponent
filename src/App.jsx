@@ -1,22 +1,22 @@
-import styled from "styled-components";
-import EstilosGlobais from "./components/EstilosGlobais";
-
+import { styled } from "styled-components"
+import GlobalStyles from "./components/GlobalStyles/GlobalStyles"
+import Header from "./components/Header/Header"
+import Sidebar from "./components/Sidebar/Sidebar"
 
 const FundoGradiente = styled.div`
-  background: linear-gradient(
-    174.61deg,
-    #041833 4.16%,
-    #04244f 48%,
-    #154580 96.76%
-  );
+  background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
   width: 100%;
   min-height: 100vh;
-`;
+`
 
 function App() {
-  <FundoGradiente>
-    <EstilosGlobais/>
-  </FundoGradiente>;
+  return (
+    <FundoGradiente>
+      <GlobalStyles />
+      <Header />
+      <Sidebar />
+    </FundoGradiente>
+  )
 }
 
-export default App;
+export default App
