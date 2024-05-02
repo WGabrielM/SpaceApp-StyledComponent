@@ -29,14 +29,14 @@ export default function Sidebar() {
           </NavItem>
           <NavItem
             activeIcon="/images/icon/more-liked-active.svg"
-            inactiveIcon="/public/images/icon/more-liked-inactive.svg"
+            inactiveIcon="/images/icon/more-liked-inactive.svg"
             active={false}
           >
             Mais curtidas
           </NavItem>
           <NavItem
             activeIcon="/images/icon/news-active.svg"
-            inactiveIcon="/public/images/icon/news-inactive.svg"
+            inactiveIcon="/images/icon/news-inactive.svg"
             active={false}
           >
             Novas
