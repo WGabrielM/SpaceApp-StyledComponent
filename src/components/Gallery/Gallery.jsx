@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Title from "../Title/Title";
 import Tags from "./Tags/Tags";
 import Popular from "./Popular/Popular";
+import Image from "./Image/Image";
 
 const GalleryContainer = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const ImageContainer = styled.section`
   gap: 24px;
 `;
 
-export default function Gallery({ photos = [] }) {
+export default function Gallery({ photos = [], photoSelected }) {
   return (
     <>
       <Tags />
@@ -27,11 +28,9 @@ export default function Gallery({ photos = [] }) {
         <SectionFluid>
           <Title> Navegue pela galeria</Title>
           <ImageContainer>
-            <ul>
-              {photos.map((photo) => (
-                <li key={photo.id}>{photo.path}</li>
-              ))}
-            </ul>
+            {photos.map((photo) => (
+              <Image key={photo.id} photo={photo} zoomRequest={photoSelected} />
+            ))}
           </ImageContainer>
         </SectionFluid>
         <Popular />

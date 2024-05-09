@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-import ButtonIcon from "../../ButtonIcon";
+import ButtonIcon from "../../ButtonIcon/ButtonIcon"
 
 const Figure = styled.figure`
   width: ${(props) => (props.$expand ? "90%" : "460px")};
@@ -38,7 +37,7 @@ const Footer = styled.footer`
   align-items: center;
 `;
 
-export default function Image({ photo, expand = false }) {
+export default function Image({ photo, expand = false, zoomRequest }) {
   return (
     <Figure $expand={expand} id={`fogo-${photo.id}`}>
       <img src={photo.path} alt={photo.alt} />
@@ -47,11 +46,11 @@ export default function Image({ photo, expand = false }) {
         <Footer>
           <h4>{photo.fonte}</h4>
           <ButtonIcon>
-            <img src="/icones/favorito.png" alt="Icone de favorito" />
+            <img src="images/icon/favorite.png" alt="Icone de favorito" />
           </ButtonIcon>
           {!expand && (
-            <ButtonIcon aria-hidden={expand}>
-              <img src="/icones/expandir.png" alt="Icone de expandir" />
+            <ButtonIcon aria-hidden={expand} onClick={() => zoomRequest(photo)}>
+              <img src="images/icon/expand.png" alt="Icone de expandir" />
             </ButtonIcon>
           )}
         </Footer>
