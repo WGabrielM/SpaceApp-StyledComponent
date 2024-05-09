@@ -37,7 +37,7 @@ const Footer = styled.footer`
   align-items: center;
 `;
 
-export default function Image({ photo, expand = false, zoomRequest }) {
+export default function Image({ photo, expand = false, handleZoomRequest }) {
   return (
     <Figure $expand={expand} id={`fogo-${photo.id}`}>
       <img src={photo.path} alt={photo.alt} />
@@ -49,7 +49,7 @@ export default function Image({ photo, expand = false, zoomRequest }) {
             <img src="images/icon/favorite.png" alt="Icone de favorito" />
           </ButtonIcon>
           {!expand && (
-            <ButtonIcon aria-hidden={expand} onClick={() => zoomRequest(photo)}>
+            <ButtonIcon aria-hidden={expand} onClick={() => handleZoomRequest(photo)}>
               <img src="images/icon/expand.png" alt="Icone de expandir" />
             </ButtonIcon>
           )}

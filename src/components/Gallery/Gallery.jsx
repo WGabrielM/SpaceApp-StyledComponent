@@ -29,7 +29,7 @@ export default function Gallery({ photos = [], photoSelected }) {
           <Title> Navegue pela galeria</Title>
           <ImageContainer>
             {photos.map((photo) => (
-              <Image key={photo.id} photo={photo} zoomRequest={photoSelected} />
+              <Image key={photo.id} photo={photo} handleZoomRequest={photoSelected} />
             ))}
           </ImageContainer>
         </SectionFluid>
