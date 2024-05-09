@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "../Gallery/Image/Image";
+import ButtonIcon from "../ButtonIcon/ButtonIcon";
 
 const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
@@ -12,21 +13,40 @@ const Overlay = styled.div`
 `;
 
 const DialogStyled = styled.dialog`
+  display: flex;
+  justify-content: center;
+  background: transparent;
+
+  border: 0;
+
   position: absolute;
   top: 294px;
+
+  padding: 0;
+
+  width: 1156px;
+
+  form {
+    button {
+      position: relative;
+      top: 20px;
+      right: 60px;
+    }
+  }
 `;
 
-export default function ModalZoom({ photo }) {
+export default function ModalZoom({ photo, onChangeClose }) {
   return (
     <>
       {photo && (
         <>
           <Overlay />
-          <DialogStyled open={!!photo}>
+          <DialogStyled open={!!photo} onClose={onChangeClose}>
             <Image photo={photo} expand={true} />
-            <p>Greetings, one and all!</p>
             <form method="dialog">
-              <button>OK</button>
+              <ButtonIcon formMethod="dialog">
+                <img src="/images/icon/close.png" alt="" />
+              </ButtonIcon>
             </form>
           </DialogStyled>
         </>

@@ -59,7 +59,7 @@ function App() {
           </ContentGallery>
         </MainContainer>
       </AppContainer>
-      <ModalZoom photo={photoSelected} />
+      <ModalZoom photo={photoSelected} onChangeClose={() => setphotoSelected(null)} />
     </FundoGradiente>
   );
 }

@@ -7,6 +7,7 @@ import Image from "./Image/Image";
 
 const GalleryContainer = styled.div`
   display: flex;
+  gap: 40px;
 `;
 
 const SectionFluid = styled.section`
