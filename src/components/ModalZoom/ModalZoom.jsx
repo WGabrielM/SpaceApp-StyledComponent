@@ -35,14 +35,14 @@ const DialogStyled = styled.dialog`
   }
 `;
 
-export default function ModalZoom({ photo, onChangeClose }) {
+export default function ModalZoom({ photo, onChangeClose, onChangeFavorite }) {
   return (
     <>
       {photo && (
         <>
           <Overlay />
           <DialogStyled open={!!photo} onClose={onChangeClose}>
-            <Image photo={photo} expand={true} />
+            <Image photo={photo} expand={true} onChangeFavorite={onChangeFavorite} />
             <form method="dialog">
               <ButtonIcon formMethod="dialog">
                 <img src="/images/icon/close.png" alt="" />

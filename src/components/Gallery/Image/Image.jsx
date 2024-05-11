@@ -37,7 +37,10 @@ const Footer = styled.footer`
   align-items: center;
 `;
 
-export default function Image({ photo, expand = false, handleZoomRequest }) {
+export default function Image({ photo, expand = false, handleZoomRequest, onChangeFavorite }) {
+
+  const favoriteIcone = photo.favorite ? 'images/icon/favorite-active.png': 'images/icon/favorite.png'
+
   return (
     <Figure $expand={expand} id={`fogo-${photo.id}`}>
       <img src={photo.path} alt={photo.alt} />
@@ -45,8 +48,8 @@ export default function Image({ photo, expand = false, handleZoomRequest }) {
         <h3>{photo.titulo}</h3>
         <Footer>
           <h4>{photo.fonte}</h4>
-          <ButtonIcon>
-            <img src="images/icon/favorite.png" alt="Icone de favorito" />
+          <ButtonIcon onClick={() => {onChangeFavorite(photo)}}>
+            <img src={favoriteIcone} alt="Icone de favorito" />
           </ButtonIcon>
           {!expand && (
             <ButtonIcon aria-hidden={expand} onClick={() => handleZoomRequest(photo)}>

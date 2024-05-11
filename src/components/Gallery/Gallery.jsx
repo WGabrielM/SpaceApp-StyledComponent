@@ -21,7 +21,11 @@ const ImageContainer = styled.section`
   gap: 24px;
 `;
 
-export default function Gallery({ photos = [], photoSelected }) {
+export default function Gallery({
+  photos = [],
+  photoSelected,
+  onChangeFavorite,
+}) {
   return (
     <>
       <Tags />
@@ -30,7 +34,12 @@ export default function Gallery({ photos = [], photoSelected }) {
           <Title> Navegue pela galeria</Title>
           <ImageContainer>
             {photos.map((photo) => (
-              <Image key={photo.id} photo={photo} handleZoomRequest={photoSelected} />
+              <Image
+                key={photo.id}
+                photo={photo}
+                handleZoomRequest={photoSelected}
+                onChangeFavorite={onChangeFavorite}
+              />
             ))}
           </ImageContainer>
         </SectionFluid>

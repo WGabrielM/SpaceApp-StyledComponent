@@ -42,7 +42,29 @@ const ContentGallery = styled.section`
 
 function App() {
   const [galleryPhotos, setGalleryPhotos] = useState(photos);
-  const [photoSelected, setphotoSelected] = useState(null);
+  const [photoSelected, setPhotoSelected] = useState(null);
+
+  const onChangeFavorite = (photo) => {
+    if (photo.id === photoSelected?.id) {
+      setPhotoSelected({
+        ...photoSelected,
+        favorite: !photoSelected.favorite,
+      });
+    }
+
+    setGalleryPhotos(
+      galleryPhotos.map((galleryPhoto) => {
+        return {
+          ...galleryPhoto,
+          favorite:
+            galleryPhoto.id === photo.id
+              ? !photo.favorite
+              : galleryPhoto.favorite,
+        };
+      })
+    );
+  };
+
   return (
     <FundoGradiente>
       <GlobalStyles />
@@ -55,11 +77,19 @@ function App() {
               text="A galeria mais completa de fotos do espaço!"
               backgroundImage={bannerBackground}
             />
-            <Gallery photoSelected={photo => setphotoSelected(photo)} photos={galleryPhotos} />
+            <Gallery
+              photoSelected={(photo) => setPhotoSelected(photo)}
+              photos={galleryPhotos}
+              onChangeFavorite={onChangeFavorite}
+            />
           </ContentGallery>
         </MainContainer>
       </AppContainer>
-      <ModalZoom photo={photoSelected} onChangeClose={() => setphotoSelected(null)} />
+      <ModalZoom
+        photo={photoSelected}
+        onChangeClose={() => setPhotoSelected(null)}
+        onChangeFavorite={onChangeFavorite}
+      />
     </FundoGradiente>
   );
 }
