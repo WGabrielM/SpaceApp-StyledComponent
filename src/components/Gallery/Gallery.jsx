@@ -22,13 +22,14 @@ const ImageContainer = styled.section`
 `;
 
 export default function Gallery({
+  setTag,
   photos = [],
   photoSelected,
   onChangeFavorite,
 }) {
   return (
     <>
-      <Tags />
+      <Tags setTag={setTag} />
       <GalleryContainer>
         <SectionFluid>
           <Title> Navegue pela galeria</Title>

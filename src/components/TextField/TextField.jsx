@@ -34,10 +34,16 @@ const IconLoupe = styled.img`
   width: 38px;
 `;
 
-export default function TextField(props) {
+export default function TextField({ filter, setFilter }) {
   return (
     <ContainerStyled>
-      <TextFiedlStyled placeholder="O que você procura?" {...props} />
+      <TextFiedlStyled
+        onChange={(event) => {
+          setFilter(event.target.value);
+        }}
+        type="text"
+        placeholder="O que você procura?"
+      />
       <IconLoupe src={search} alt="ícone de lupa" />
     </ContainerStyled>
   );

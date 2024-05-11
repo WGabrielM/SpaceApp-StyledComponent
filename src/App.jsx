@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 import GlobalStyles from "./components/GlobalStyles/GlobalStyles";
@@ -10,6 +10,7 @@ import Gallery from "./components/Gallery/Gallery";
 
 import photos from "./fotos.json";
 import ModalZoom from "./components/ModalZoom/ModalZoom";
+import Footer from "./components/Footer/Footer";
 
 const FundoGradiente = styled.div`
   background: linear-gradient(
@@ -43,13 +44,30 @@ const ContentGallery = styled.section`
 function App() {
   const [galleryPhotos, setGalleryPhotos] = useState(photos);
   const [photoSelected, setPhotoSelected] = useState(null);
+  const [filter, setFilter] = useState("");
+  const [tag, setTag] = useState(0);
+  const [photoWithZoom, setPhotoWithZoom] = useState(null);
+
+  useEffect(() => {
+    const filteredPhotos = photos.filter((photo) => {
+      const filterByTag = !tag || photo.tagId === tag;
+
+      const filterByTitle =
+        !filter || photo.titulo.toLowerCase().includes(filter.toLowerCase());
+
+      return filterByTag && filterByTitle;
+    });
+
+    setGalleryPhotos(filteredPhotos);
+  }, [filter, tag]);
 
   const onChangeFavorite = (photo) => {
-    if (photo.id === photoSelected?.id) {
-      setPhotoSelected({
-        ...photoSelected,
-        favorite: !photoSelected.favorite,
-      });
+
+    if (photo.id === photoWithZoom?.id) {
+      setPhotoWithZoom({
+        ...photoWithZoom,
+        favorite: !photoWithZoom.favorite
+      })
     }
 
     setGalleryPhotos(
@@ -69,7 +87,7 @@ function App() {
     <FundoGradiente>
       <GlobalStyles />
       <AppContainer>
-        <Header />
+        <Header filter={filter} setFilter={setFilter} />
         <MainContainer>
           <Sidebar />
           <ContentGallery>
@@ -81,15 +99,17 @@ function App() {
               photoSelected={(photo) => setPhotoSelected(photo)}
               photos={galleryPhotos}
               onChangeFavorite={onChangeFavorite}
+              setTag={setTag}
             />
           </ContentGallery>
         </MainContainer>
       </AppContainer>
       <ModalZoom
-        photo={photoSelected}
+        photo={photoWithZoom}
         onChangeClose={() => setPhotoSelected(null)}
         onChangeFavorite={onChangeFavorite}
       />
+      <Footer />
     </FundoGradiente>
   );
 }
